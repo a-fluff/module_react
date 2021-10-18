@@ -1,6 +1,20 @@
 import { useState } from 'react';
 
 import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+
+import Home from './Lesson_3/components/Home';
+import About from './Lesson_3/components/About';
+import ListRickAndMorty from './Lesson_3/components/ListRickAndMorty';
+import ThisPerson from './Lesson_3/components/ThisPerson';
+import NotFound from './Lesson_3/components/NotFound';
+
 // import Header from './Lesson_1/Header';
 // import Homework from './Lesson_1/Homework/Homework';
 
@@ -14,7 +28,6 @@ import './App.css';
 // import Radio from './Lesson_2/Radio';
 
 // import Button from './Lesson_3/components/Button';
-import ListRickAndMorty from './Lesson_3/components/ListRickAndMorty';
 
 
 function App() {
@@ -26,26 +39,53 @@ function App() {
 
   return (
     <>
-    <div>
-      {/* Hello React!
+    <Router>
+      {/* <div> */}
+        {/* Hello React!
 
-      <Header />
-    </div>
-    <div>
-      <Homework />
-    </div>
-    <div>
-      <Functions />
-      <TagsInArr />
-      <States />
-      <Inputs />
-      <TextArea />
-      <Checkbox />
-      <Select />
-      <Radio /> */}
-      {/* <Button value={value}></Button> */}
-      <ListRickAndMorty/>
-    </div>
+        <Header />
+      </div>
+      <div>
+        <Homework />
+      </div>
+      <div>
+        <Functions />
+        <TagsInArr />
+        <States />
+        <Inputs />
+        <TextArea />
+        <Checkbox />
+        <Select />
+        <Radio /> */}
+        {/* <Button value={value}></Button> */}
+      {/* </div> */}
+
+      <Link to="/">Home</Link>
+      <Link to="/all-persons">All persons</Link>
+      <Link to="/about">About</Link>
+        
+      <Switch>
+        <Route exact path="/">
+          <Home></Home>
+        </Route>
+
+        <Route path="/all-person/:id">
+          <ThisPerson/>
+        </Route>
+
+        <Route exact path="/all-persons">
+          <ListRickAndMorty/>
+        </Route>
+
+        <Route exact path="/about">
+          <About></About>
+        </Route>
+
+        <Route path="*">
+          <NotFound/>
+        </Route>
+      </Switch>
+    </Router>
     </>
   );
 }
